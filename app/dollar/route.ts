@@ -1,5 +1,7 @@
 import * as cheerio from 'cheerio'
 
+export const dynamic = 'force-dynamic'
+
 export const GET = async () => {
   const html = await fetch("https://srh.bankofchina.com/search/whpj/search_cn.jsp?pjname=美元").then(v => v.text())
   const $ = cheerio.load(html)
