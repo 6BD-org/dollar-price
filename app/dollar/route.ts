@@ -11,11 +11,15 @@ export const GET = async () => {
 
 
 const getBocExchangeRate = async () => {
-  const html = await fetch("https://srh.bankofchina.com/search/whpj/search_cn.jsp?pjname=美元", {
+  const html = await fetch("https://www.boc.cn/SOURCEDB/WHPJ/index.html", {
     cache: 'no-store'
   }).then(v => v.text())
   const $ = cheerio.load(html)
-  const table = $('body > div.wrapper > div.BOC_main.publish > table > tbody > tr:nth-child(2)').text().split('\n').map(item => item.trim()).filter(Boolean)
+  const table = $('div.BOC_main').find('table').find('tbody').find('tr').filter((i, e) => {
+    return $(e).find('td').eq(0).text().trim() === '美元'
+  }).text().split('\n').map(item => item.trim()).filter(Boolean)
+  
+  console.log('trs', table)
   return `中国银行${table[0]}汇率\n现汇买入价: ${table[1]}\n现汇卖出价: ${table[3]}\n发布时间: ${table[6]}\n`
 }
 
