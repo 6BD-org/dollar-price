@@ -39,13 +39,13 @@ const getBocExchangeRatePage = async (currentPage = 0) => {
   return []
 }
 
-const getBocExchangeRate = async () => {
+export const getBocExchangeRate = async () => {
   const table = await getBocExchangeRatePage(0)
   if (!table) return `未爬取到美元数据`
   return `中国银行${table[0]}汇率\n现汇买入价: ${table[1]}\n现汇卖出价: ${table[3]}\n发布时间: ${table[6]}\n`
 }
 
-const getBOCHKExchangeRate = async () => {
+export const getBOCHKExchangeRate = async () => {
   const html = await fetch("https://www.bochk.com/whk/rates/exchangeRatesUSD/exchangeRatesUSD-input.action", {
     cache: 'no-store'
   }).then(v => v.text())
