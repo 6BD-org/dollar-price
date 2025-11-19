@@ -1,3 +1,6 @@
+
+import { getBocExchangeRate, getBOCHKExchangeRate } from '../lib/exchange-rate'
+import RefreshButton from './RefreshButton'
 interface ExchangeRateData {
   bank: string
   buyRate: string
@@ -44,8 +47,6 @@ function parseRatesText(text: string): ExchangeRateData[] {
   return rates
 }
 
-import { getBocExchangeRate, getBOCHKExchangeRate } from '../dollar/route'
-import RefreshButton from './RefreshButton'
 
 export default async function ExchangeRate() {
   const { rates, error } = await fetchExchangeRates()
