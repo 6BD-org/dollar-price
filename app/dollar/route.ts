@@ -13,7 +13,7 @@ const TRY_PAGE = 3
 
 const getBocExchangeRatePage = async (currentPage = 0) => {
   if (currentPage === 0) {
-    const html = await fetch("https://www.boc.cn/SOURCEDB/WHPJ/index.html", {
+    const html = await fetch("https://www.boc.cn/sourcedb/whpj", {
       cache: 'no-store'
     }).then(v => v.text())
     const $ = cheerio.load(html)
